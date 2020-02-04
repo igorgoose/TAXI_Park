@@ -22,7 +22,7 @@ public class TaxiRepositoryArrayList implements TaxiRepository {
 
     @Override
     public void remove(TaxiVehicle taxiVehicle) {
-
+        repository.remove(taxiVehicle);
     }
 
     @Override
