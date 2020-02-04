@@ -2,7 +2,7 @@ package epam.training.schepov.park.service.validator;
 
 import epam.training.schepov.park.exception.service.InvalidVehicleCapacityValueServiceException;
 import epam.training.schepov.park.exception.service.NullObjectServiceException;
-import epam.training.schepov.park.taxi.TaxiVehicle;
+import epam.training.schepov.park.entity.TaxiVehicle;
 
 public class TaxiValidator {
 

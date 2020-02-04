@@ -3,7 +3,7 @@ package epam.training.schepov.park.service;
 import epam.training.schepov.park.exception.service.InvalidVehicleCapacityValueServiceException;
 import epam.training.schepov.park.exception.service.NullObjectServiceException;
 import epam.training.schepov.park.repository.specification.TaxiVehicleSpecification;
-import epam.training.schepov.park.taxi.TaxiVehicle;
+import epam.training.schepov.park.entity.TaxiVehicle;
 
 import java.math.BigDecimal;
 import java.util.Comparator;

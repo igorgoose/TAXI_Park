@@ -1,6 +1,6 @@
-package epam.training.schepov.park.taxi;
+package epam.training.schepov.park.entity;
 
-import epam.training.schepov.park.taxi.brand.TaxiBrand;
+import epam.training.schepov.park.entity.brand.TaxiBrand;
 
 import java.math.BigDecimal;
 
@@ -11,9 +11,19 @@ public abstract class TaxiVehicle {
     protected int passengerCapacity;
     protected int loadCapacity;
     protected TaxiBrand brand;
+    protected final TaxiBrand DEFAULT_BRAND = TaxiBrand.VOLKSWAGEN;
 
     protected TaxiVehicle() {
         id = current_id++;
+        brand = DEFAULT_BRAND;
+    }
+
+    protected TaxiVehicle(BigDecimal price, int loadCapacity, int passengerCapacity, TaxiBrand brand){
+        id = current_id++;
+        this.price = price;
+        this.loadCapacity = loadCapacity;
+        this.passengerCapacity = passengerCapacity;
+        this.brand = brand;
     }
 
     public BigDecimal getPrice(){

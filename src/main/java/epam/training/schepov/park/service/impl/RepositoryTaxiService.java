@@ -8,7 +8,7 @@ import epam.training.schepov.park.repository.specification.TaxiVehicleSpecificat
 import epam.training.schepov.park.repository.specification.impl.TaxiVehicleSpecificationAny;
 import epam.training.schepov.park.service.TaxiService;
 import epam.training.schepov.park.service.validator.TaxiValidator;
-import epam.training.schepov.park.taxi.TaxiVehicle;
+import epam.training.schepov.park.entity.TaxiVehicle;
 
 import java.math.BigDecimal;
 import java.util.Comparator;

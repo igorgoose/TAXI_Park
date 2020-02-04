@@ -2,7 +2,7 @@ package epam.training.schepov.park.repository.impl;
 
 import epam.training.schepov.park.repository.TaxiRepository;
 import epam.training.schepov.park.repository.specification.TaxiVehicleSpecification;
-import epam.training.schepov.park.taxi.TaxiVehicle;
+import epam.training.schepov.park.entity.TaxiVehicle;
 
 import java.util.ArrayList;
 import java.util.HashSet;
