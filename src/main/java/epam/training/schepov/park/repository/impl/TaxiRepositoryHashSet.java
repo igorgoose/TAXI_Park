@@ -4,9 +4,8 @@ import epam.training.schepov.park.repository.TaxiRepository;
 import epam.training.schepov.park.repository.specification.TaxiVehicleSpecification;
 import epam.training.schepov.park.entity.TaxiVehicle;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 
 public class TaxiRepositoryHashSet implements TaxiRepository {
 
@@ -27,13 +26,18 @@ public class TaxiRepositoryHashSet implements TaxiRepository {
     }
 
     @Override
-    public List<TaxiVehicle> get(TaxiVehicleSpecification specification) {
-        ArrayList<TaxiVehicle> specifiedList = new ArrayList<>();
+    public Collection<TaxiVehicle> get(TaxiVehicleSpecification specification) {
+        HashSet<TaxiVehicle> specifiedList = new HashSet<TaxiVehicle>();
         for (TaxiVehicle taxiVehicle : repository) {
             if(specification.matches(taxiVehicle)){
                 specifiedList.add(taxiVehicle);
             }
         }
         return specifiedList;
+    }
+
+    @Override
+    public Collection<TaxiVehicle> getAll() {
+        return new HashSet<>(repository);
     }
 }
