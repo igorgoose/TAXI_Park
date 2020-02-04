@@ -9,7 +9,7 @@ public class TaxiValidator {
     public static void validate(TaxiVehicle taxiVehicle) throws NullObjectServiceException, InvalidVehicleCapacityValueServiceException {
         if(taxiVehicle == null){
             //todo log
-            throw new NullObjectServiceException();
+            throw new NullObjectServiceException("Null taxiVehicle passed!");
         }
         int passengerCapacity = taxiVehicle.getPassengerCapacity();
         int loadCapacity = taxiVehicle.getLoadCapacity();
@@ -18,7 +18,7 @@ public class TaxiValidator {
                 passengerCapacity > taxiVehicle.getMaxPassengerCapacity() ||
                 passengerCapacity < taxiVehicle.getMinPassengerCapacity()){
             //todo log
-            throw new InvalidVehicleCapacityValueServiceException();
+            throw new InvalidVehicleCapacityValueServiceException("Invalid capacity value!");
         }
     }
 

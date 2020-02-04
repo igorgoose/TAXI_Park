@@ -1,10 +1,13 @@
 package epam.training.schepov.park.service.impl;
 
+import epam.training.schepov.park.exception.service.InvalidVehicleCapacityValueServiceException;
+import epam.training.schepov.park.exception.service.NullObjectServiceException;
 import epam.training.schepov.park.repository.TaxiRepository;
 import epam.training.schepov.park.repository.impl.TaxiRepositoryHashSet;
 import epam.training.schepov.park.repository.specification.TaxiVehicleSpecification;
 import epam.training.schepov.park.repository.specification.impl.TaxiVehicleSpecificationAny;
 import epam.training.schepov.park.service.TaxiService;
+import epam.training.schepov.park.service.validator.TaxiValidator;
 import epam.training.schepov.park.taxi.TaxiVehicle;
 
 import java.math.BigDecimal;
@@ -27,20 +30,23 @@ public enum RepositoryTaxiService implements TaxiService {
     }
 
     @Override
-    public void addVehicle(TaxiVehicle taxiVehicle) {
-        //todo validation
+    public void addVehicle(TaxiVehicle taxiVehicle) throws InvalidVehicleCapacityValueServiceException, NullObjectServiceException {
+        TaxiValidator.validate(taxiVehicle);
         repository.add(taxiVehicle);
     }
 
     @Override
-    public void removeVehicle(TaxiVehicle taxiVehicle) {
-        //todo validation
+    public void removeVehicle(TaxiVehicle taxiVehicle) throws InvalidVehicleCapacityValueServiceException, NullObjectServiceException {
+        TaxiValidator.validate(taxiVehicle);
         repository.remove(taxiVehicle);
     }
 
     @Override
-    public List<TaxiVehicle> getVehicles(TaxiVehicleSpecification specification) {
-        //todo validation
+    public List<TaxiVehicle> getVehicles(TaxiVehicleSpecification specification) throws NullObjectServiceException {
+        if(specification == null){
+            //todo log
+            throw new NullObjectServiceException("Null specification passed!");
+        }
         return repository.get(specification);
     }
 
@@ -56,7 +62,7 @@ public enum RepositoryTaxiService implements TaxiService {
 
     @Override
     public List<TaxiVehicle> sort(Comparator<TaxiVehicle> comparator) {
-        return null;
+        return null;//todo
     }
 
 }
