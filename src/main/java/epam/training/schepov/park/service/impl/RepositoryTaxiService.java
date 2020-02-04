@@ -11,17 +11,16 @@ import java.math.BigDecimal;
 import java.util.Comparator;
 import java.util.List;
 
-public class RepositoryTaxiService implements TaxiService {
+public enum RepositoryTaxiService implements TaxiService {
+
+    INSTANCE;
 
     private TaxiRepository repository;
 
-    public RepositoryTaxiService(){
+    RepositoryTaxiService(){
         repository = new TaxiRepositoryHashSet();
     }
 
-    public RepositoryTaxiService(TaxiRepository repository){
-        this.repository = repository;
-    }
 
     public void setRepository(TaxiRepository repository) {
         this.repository = repository;

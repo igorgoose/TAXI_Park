@@ -35,4 +35,10 @@ public abstract class TaxiVehicle {
     public TaxiBrand getBrand() {
         return brand;
     }
+
+    public abstract int getMinLoadCapacity();
+    public abstract int getMaxLoadCapacity();
+    public abstract int getMinPassengerCapacity();
+    public abstract int getMaxPassengerCapacity();
+
 }
