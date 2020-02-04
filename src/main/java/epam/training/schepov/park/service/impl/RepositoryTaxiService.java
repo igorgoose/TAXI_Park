@@ -7,7 +7,7 @@ import epam.training.schepov.park.repository.impl.TaxiRepositoryHashSet;
 import epam.training.schepov.park.repository.specification.TaxiVehicleSpecification;
 import epam.training.schepov.park.repository.specification.impl.TaxiVehicleSpecificationAny;
 import epam.training.schepov.park.service.TaxiService;
-import epam.training.schepov.park.service.validator.TaxiValidator;
+import epam.training.schepov.park.validator.TaxiVehicleValidator;
 import epam.training.schepov.park.entity.TaxiVehicle;
 
 import java.math.BigDecimal;
@@ -31,13 +31,13 @@ public enum RepositoryTaxiService implements TaxiService {
 
     @Override
     public void addVehicle(TaxiVehicle taxiVehicle) throws InvalidVehicleCapacityValueServiceException, NullObjectServiceException {
-        TaxiValidator.validate(taxiVehicle);
+        TaxiVehicleValidator.validate(taxiVehicle);
         repository.add(taxiVehicle);
     }
 
     @Override
     public void removeVehicle(TaxiVehicle taxiVehicle) throws InvalidVehicleCapacityValueServiceException, NullObjectServiceException {
-        TaxiValidator.validate(taxiVehicle);
+        TaxiVehicleValidator.validate(taxiVehicle);
         repository.remove(taxiVehicle);
     }
 

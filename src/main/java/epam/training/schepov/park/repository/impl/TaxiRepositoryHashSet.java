@@ -27,7 +27,7 @@ public class TaxiRepositoryHashSet implements TaxiRepository {
 
     @Override
     public Collection<TaxiVehicle> get(TaxiVehicleSpecification specification) {
-        HashSet<TaxiVehicle> specifiedList = new HashSet<TaxiVehicle>();
+        HashSet<TaxiVehicle> specifiedList = new HashSet<>();
         for (TaxiVehicle taxiVehicle : repository) {
             if(specification.matches(taxiVehicle)){
                 specifiedList.add(taxiVehicle);

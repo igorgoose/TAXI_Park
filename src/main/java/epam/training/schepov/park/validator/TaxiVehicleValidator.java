@@ -1,10 +1,10 @@
-package epam.training.schepov.park.service.validator;
+package epam.training.schepov.park.validator;
 
 import epam.training.schepov.park.exception.service.InvalidVehicleCapacityValueServiceException;
 import epam.training.schepov.park.exception.service.NullObjectServiceException;
 import epam.training.schepov.park.entity.TaxiVehicle;
 
-public class TaxiValidator {
+public class TaxiVehicleValidator {
 
     public static void validate(TaxiVehicle taxiVehicle) throws NullObjectServiceException, InvalidVehicleCapacityValueServiceException {
         if(taxiVehicle == null){
