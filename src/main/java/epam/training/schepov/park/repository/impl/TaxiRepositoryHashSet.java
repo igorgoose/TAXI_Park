@@ -5,14 +5,15 @@ import epam.training.schepov.park.repository.specification.TaxiVehicleSpecificat
 import epam.training.schepov.park.taxi.TaxiVehicle;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
-public class TaxiRepositoryArrayList implements TaxiRepository {
+public class TaxiRepositoryHashSet implements TaxiRepository {
 
-    private ArrayList<TaxiVehicle> repository;
+    private HashSet<TaxiVehicle> repository;
 
-    public TaxiRepositoryArrayList() {
-        repository = new ArrayList<TaxiVehicle>();
+    public TaxiRepositoryHashSet() {
+        repository = new HashSet<>();
     }
 
     @Override
