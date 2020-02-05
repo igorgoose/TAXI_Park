@@ -17,4 +17,5 @@ public interface TaxiService {
     Set<TaxiVehicle> sortById() throws NullObjectServiceException;
     Set<TaxiVehicle> sortByLoadAndPassengerCapacity() throws NullObjectServiceException;
     Set<TaxiVehicle> sortByPassengerAndLoadCapacity() throws NullObjectServiceException;
+    Set<TaxiVehicle> updateByID(TaxiVehicle newVehicle);
 }

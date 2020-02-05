@@ -2,7 +2,7 @@ package epam.training.schepov.park.repository.impl;
 
 import epam.training.schepov.park.exception.repository.RepositoryException;
 import epam.training.schepov.park.repository.TaxiRepository;
-import epam.training.schepov.park.repository.specification.TaxiVehicleSpecification;
+import epam.training.schepov.park.specification.TaxiVehicleSpecification;
 import epam.training.schepov.park.entity.TaxiVehicle;
 import org.apache.log4j.Logger;
 
@@ -47,7 +47,7 @@ public enum HashSetTaxiVehicleRepository implements TaxiRepository {
 
     @Override
     public Set<TaxiVehicle> getAll() {
-        return new TreeSet<>(repository);
+        return repository;
     }
 
 

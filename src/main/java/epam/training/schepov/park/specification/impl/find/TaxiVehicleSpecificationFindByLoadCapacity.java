@@ -1,13 +1,12 @@
-package epam.training.schepov.park.repository.specification.impl.find;
+package epam.training.schepov.park.specification.impl.find;
 
 import epam.training.schepov.park.factory.RepositoryFactory;
 import epam.training.schepov.park.repository.TaxiRepository;
-import epam.training.schepov.park.repository.specification.TaxiVehicleSpecification;
+import epam.training.schepov.park.specification.TaxiVehicleSpecification;
 import epam.training.schepov.park.entity.TaxiVehicle;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 public class TaxiVehicleSpecificationFindByLoadCapacity implements TaxiVehicleSpecification {
 

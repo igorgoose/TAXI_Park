@@ -6,13 +6,13 @@ import epam.training.schepov.park.exception.validator.InvalidVehicleCapacityValu
 import epam.training.schepov.park.exception.validator.NullObjectTaxiVehicleValidatorException;
 import epam.training.schepov.park.repository.TaxiRepository;
 import epam.training.schepov.park.repository.impl.HashSetTaxiVehicleRepository;
-import epam.training.schepov.park.repository.specification.TaxiVehicleSpecification;
-import epam.training.schepov.park.repository.specification.impl.find.TaxiVehicleSpecificationFindAll;
-import epam.training.schepov.park.repository.specification.impl.find.TaxiVehicleSpecificationFindByLoadCapacity;
-import epam.training.schepov.park.repository.specification.impl.find.TaxiVehicleSpecificationFindByPassengerCapacity;
-import epam.training.schepov.park.repository.specification.impl.sort.TaxiVehicleSpecificationSortByID;
-import epam.training.schepov.park.repository.specification.impl.sort.TaxiVehicleSpecificationSortByLoadAndPassengers;
-import epam.training.schepov.park.repository.specification.impl.sort.TaxiVehicleSpecificationSortByPassengerAndLoad;
+import epam.training.schepov.park.specification.TaxiVehicleSpecification;
+import epam.training.schepov.park.specification.impl.find.TaxiVehicleSpecificationFindAll;
+import epam.training.schepov.park.specification.impl.find.TaxiVehicleSpecificationFindByLoadCapacity;
+import epam.training.schepov.park.specification.impl.find.TaxiVehicleSpecificationFindByPassengerCapacity;
+import epam.training.schepov.park.specification.impl.sort.TaxiVehicleSpecificationSortByID;
+import epam.training.schepov.park.specification.impl.sort.TaxiVehicleSpecificationSortByLoadAndPassengers;
+import epam.training.schepov.park.specification.impl.sort.TaxiVehicleSpecificationSortByPassengerAndLoad;
 import epam.training.schepov.park.service.TaxiService;
 import epam.training.schepov.park.validator.TaxiVehicleValidator;
 import epam.training.schepov.park.entity.TaxiVehicle;
@@ -116,5 +116,10 @@ public enum RepositoryTaxiService implements TaxiService {
     public Set<TaxiVehicle> sortByPassengerAndLoadCapacity() {
         TaxiVehicleSpecification specification = new TaxiVehicleSpecificationSortByPassengerAndLoad();
         return repository.query(specification);
+    }
+
+    @Override
+    public Set<TaxiVehicle> updateByID(TaxiVehicle newVehicle) {
+        return null;
     }
 }

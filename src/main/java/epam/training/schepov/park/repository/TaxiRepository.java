@@ -1,7 +1,7 @@
 package epam.training.schepov.park.repository;
 
 
-import epam.training.schepov.park.repository.specification.TaxiVehicleSpecification;
+import epam.training.schepov.park.specification.TaxiVehicleSpecification;
 import epam.training.schepov.park.entity.TaxiVehicle;
 
 import java.util.Set;

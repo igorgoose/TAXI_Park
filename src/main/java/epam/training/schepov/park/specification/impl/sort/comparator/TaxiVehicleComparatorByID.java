@@ -1,4 +1,4 @@
-package epam.training.schepov.park.repository.specification.impl.sort.comparator;
+package epam.training.schepov.park.specification.impl.sort.comparator;
 
 import epam.training.schepov.park.entity.TaxiVehicle;
 

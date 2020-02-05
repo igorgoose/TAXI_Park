@@ -1,9 +1,9 @@
-package epam.training.schepov.park.repository.specification.impl.sort;
+package epam.training.schepov.park.specification.impl.sort;
 
 import epam.training.schepov.park.entity.TaxiVehicle;
 import epam.training.schepov.park.factory.RepositoryFactory;
 import epam.training.schepov.park.repository.TaxiRepository;
-import epam.training.schepov.park.repository.specification.TaxiVehicleSpecification;
+import epam.training.schepov.park.specification.TaxiVehicleSpecification;
 
 
 import java.util.Set;

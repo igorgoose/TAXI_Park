@@ -3,11 +3,8 @@ package epam.training.schepov.park.validator;
 import epam.training.schepov.park.entity.TaxiVehicle;
 import epam.training.schepov.park.exception.validator.InvalidVehicleCapacityValueValidatorException;
 import epam.training.schepov.park.exception.validator.NullObjectTaxiVehicleValidatorException;
-import org.apache.log4j.Logger;
 
 public class TaxiVehicleValidator {
-
-    private final static Logger LOGGER = Logger.getLogger(TaxiVehicleValidator.class);
 
     public static void validate(TaxiVehicle taxiVehicle)
         throws NullObjectTaxiVehicleValidatorException,
