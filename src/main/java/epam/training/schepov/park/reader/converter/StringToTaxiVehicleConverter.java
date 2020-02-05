@@ -3,6 +3,8 @@ package epam.training.schepov.park.reader.converter;
 import epam.training.schepov.park.entity.TaxiVehicle;
 import epam.training.schepov.park.entity.brand.TaxiBrand;
 import epam.training.schepov.park.exception.converter.ConverterException;
+import epam.training.schepov.park.exception.validator.InvalidVehicleCapacityValueValidatorException;
+import epam.training.schepov.park.exception.validator.NullObjectTaxiVehicleValidatorException;
 import epam.training.schepov.park.factory.TaxiVehicleFactory;
 import epam.training.schepov.park.factory.impl.TaxiAutoFactory;
 import epam.training.schepov.park.factory.impl.TaxiCargoFactory;
@@ -11,6 +13,8 @@ import epam.training.schepov.park.reader.converter.assigner.DependentParameterAs
 import epam.training.schepov.park.reader.converter.assigner.impl.TaxiAutoAssigner;
 import epam.training.schepov.park.reader.converter.assigner.impl.TaxiCargoAssigner;
 import epam.training.schepov.park.reader.converter.assigner.impl.TaxiMinibusAssigner;
+import epam.training.schepov.park.validator.TaxiVehicleValidator;
+
 import java.math.BigDecimal;
 
 public enum StringToTaxiVehicleConverter {
@@ -30,7 +34,7 @@ public enum StringToTaxiVehicleConverter {
   private TaxiVehicleFactory taxiVehicleFactory;
   private DependentParameterAssigner assigner;
 
-  public TaxiVehicle convert(String vehicleLine) throws ConverterException {
+  public TaxiVehicle convert(String vehicleLine) throws ConverterException, InvalidVehicleCapacityValueValidatorException, NullObjectTaxiVehicleValidatorException {
     if (vehicleLine == null) {
       throw new ConverterException("Null vehicle line passed!");
     }
@@ -46,7 +50,7 @@ public enum StringToTaxiVehicleConverter {
     assignPassengerCapacity(taxiVehicle, parameters[PASSENGER_CAPACITY_INDEX]);
     assignBrand(taxiVehicle, parameters[BRAND_INDEX]);
     assigner.assign(taxiVehicle, parameters[CLASS_DEPENDENT_INDEX]);
-
+    TaxiVehicleValidator.validate(taxiVehicle);
     return taxiVehicle;
   }
 
