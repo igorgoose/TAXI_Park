@@ -10,6 +10,9 @@ import epam.training.schepov.park.repository.specification.TaxiVehicleSpecificat
 import epam.training.schepov.park.repository.specification.impl.find.TaxiVehicleSpecificationFindAll;
 import epam.training.schepov.park.repository.specification.impl.find.TaxiVehicleSpecificationFindByLoadCapacity;
 import epam.training.schepov.park.repository.specification.impl.find.TaxiVehicleSpecificationFindByPassengerCapacity;
+import epam.training.schepov.park.repository.specification.impl.sort.TaxiVehicleSpecificationSortByID;
+import epam.training.schepov.park.repository.specification.impl.sort.TaxiVehicleSpecificationSortByLoadAndPassengers;
+import epam.training.schepov.park.repository.specification.impl.sort.TaxiVehicleSpecificationSortByPassengerAndLoad;
 import epam.training.schepov.park.service.TaxiService;
 import epam.training.schepov.park.validator.TaxiVehicleValidator;
 import epam.training.schepov.park.entity.TaxiVehicle;
@@ -17,8 +20,7 @@ import org.apache.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
 
 
 public enum RepositoryTaxiService implements TaxiService {
@@ -46,10 +48,10 @@ public enum RepositoryTaxiService implements TaxiService {
         try {
             TaxiVehicleValidator.validate(taxiVehicle);
         } catch (NullObjectTaxiVehicleValidatorException e) {
-          LOGGER.warn("Null taxi vehicle passed!", e);
+            LOGGER.warn("Null taxi vehicle passed!", e);
             throw new NullObjectServiceException(e);
         } catch (InvalidVehicleCapacityValueValidatorException e) {
-          LOGGER.warn("Invalid  passed!", e);
+            LOGGER.warn("Invalid  passed!", e);
             throw new InvalidVehicleCapacityValueServiceException(e);
         }
         repository.add(taxiVehicle);
@@ -71,26 +73,20 @@ public enum RepositoryTaxiService implements TaxiService {
     }
 
     @Override
-    public List<TaxiVehicle> getVehiclesByLoadCapacity(int minCapacity, int maxCapacity) throws NullObjectServiceException {
-        return getVehicles(new TaxiVehicleSpecificationFindByLoadCapacity(minCapacity, maxCapacity));
+    public Set<TaxiVehicle> getVehiclesByLoadCapacity(int minCapacity, int maxCapacity) throws NullObjectServiceException {
+        TaxiVehicleSpecification specification = new TaxiVehicleSpecificationFindByLoadCapacity(minCapacity, maxCapacity);
+        return repository.query(specification);
     }
 
     @Override
-    public List<TaxiVehicle> getVehiclesByPassengerCapacity(int minCapacity, int maxCapacity) throws NullObjectServiceException {
-        return getVehicles(new TaxiVehicleSpecificationFindByPassengerCapacity(minCapacity, maxCapacity));
+    public Set<TaxiVehicle> getVehiclesByPassengerCapacity(int minCapacity, int maxCapacity) throws NullObjectServiceException {
+        TaxiVehicleSpecification specification = new TaxiVehicleSpecificationFindByPassengerCapacity(minCapacity, maxCapacity);
+        return repository.query(specification);
     }
 
     @Override
-    public List<TaxiVehicle> getAllVehicles() {
-        return repository.query(new TaxiVehicleSpecificationFindAll());
-    }
-
-    private List<TaxiVehicle> getVehicles(TaxiVehicleSpecification specification)
-            throws NullObjectServiceException {
-        if (specification == null) {
-            LOGGER.warn("Null specification passed!");
-            throw new NullObjectServiceException("Null specification passed!");
-        }
+    public Set<TaxiVehicle> getAllVehicles() {
+        TaxiVehicleSpecification specification = new TaxiVehicleSpecificationFindAll();
         return repository.query(specification);
     }
 
@@ -104,38 +100,21 @@ public enum RepositoryTaxiService implements TaxiService {
         return overallValue;
     }
 
-
-    private void sort(Comparator<TaxiVehicle> comparator) throws NullObjectServiceException {
-        if (comparator == null) {
-            LOGGER.warn("Null comparator passed!");
-            throw new NullObjectServiceException("Null comparator passed!");
-        }
-        repository.sort(comparator);
+    @Override
+    public Set<TaxiVehicle> sortById() {
+        TaxiVehicleSpecification specification = new TaxiVehicleSpecificationSortByID();
+        return repository.query(specification);
     }
 
     @Override
-    public void sortById() throws NullObjectServiceException {
-        sort(Comparator.comparingInt(TaxiVehicle::getId));
+    public Set<TaxiVehicle> sortByLoadAndPassengerCapacity() {
+        TaxiVehicleSpecification specification = new TaxiVehicleSpecificationSortByLoadAndPassengers();
+        return repository.query(specification);
     }
 
     @Override
-    public void sortByLoadAndPassengerCapacityGreater() throws NullObjectServiceException {
-        sort((o1, o2) -> {//todo remove lambda
-            if (o1.getLoadCapacity() != o2.getLoadCapacity()) {
-                return o2.getLoadCapacity() - o1.getLoadCapacity();
-            }
-            return o2.getPassengerCapacity() - o1.getPassengerCapacity();
-        });
+    public Set<TaxiVehicle> sortByPassengerAndLoadCapacity() {
+        TaxiVehicleSpecification specification = new TaxiVehicleSpecificationSortByPassengerAndLoad();
+        return repository.query(specification);
     }
-
-    @Override
-    public void sortByLoadAndPassengerCapacityLess() throws NullObjectServiceException {
-        sort((o2, o1) -> {//todo remove lambda
-            if (o1.getLoadCapacity() != o2.getLoadCapacity()) {
-                return o2.getLoadCapacity() - o1.getLoadCapacity();
-            }
-            return o2.getPassengerCapacity() - o1.getPassengerCapacity();
-        });
-    }
-
 }
