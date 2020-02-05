@@ -56,7 +56,7 @@ public class TaxiRepositoryArrayList implements TaxiRepository {
     if(comparator == null){
         throw new RepositoryException("Null comparator passed!");
     }
-
+    repository.sort(comparator);
   }
 
 }

@@ -15,5 +15,7 @@ public interface TaxiService {
     void removeVehicle(TaxiVehicle taxiVehicle) throws InvalidVehicleCapacityValueServiceException, NullObjectServiceException;
     Collection<TaxiVehicle> getVehicles(TaxiVehicleSpecification specification) throws NullObjectServiceException;
     BigDecimal getOverallValue();
-    void sort(Comparator<TaxiVehicle> comparator);
+    void sortById() throws NullObjectServiceException;
+    void sortByLoadAndPassengerCapacityGreater() throws NullObjectServiceException;
+    void sortByLoadAndPassengerCapacityLess() throws NullObjectServiceException;
 }
