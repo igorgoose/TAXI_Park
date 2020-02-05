@@ -14,6 +14,7 @@ import epam.training.schepov.park.specification.impl.sort.TaxiVehicleSpecificati
 import epam.training.schepov.park.specification.impl.sort.TaxiVehicleSpecificationSortByLoadAndPassengers;
 import epam.training.schepov.park.specification.impl.sort.TaxiVehicleSpecificationSortByPassengerAndLoad;
 import epam.training.schepov.park.service.TaxiService;
+import epam.training.schepov.park.specification.impl.update.TaxiVehicleSpecificationUpdateByID;
 import epam.training.schepov.park.validator.TaxiVehicleValidator;
 import epam.training.schepov.park.entity.TaxiVehicle;
 import org.apache.log4j.Logger;
@@ -120,6 +121,7 @@ public enum RepositoryTaxiService implements TaxiService {
 
     @Override
     public Set<TaxiVehicle> updateByID(TaxiVehicle newVehicle) {
-        return null;
+        TaxiVehicleSpecification specification = new TaxiVehicleSpecificationUpdateByID(newVehicle);
+        return repository.query(specification);
     }
 }
