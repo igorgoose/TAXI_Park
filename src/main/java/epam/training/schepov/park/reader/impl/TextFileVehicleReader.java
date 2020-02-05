@@ -10,8 +10,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TextFileVehicleReader implements TaxiVehicleReader {
   private File file;
@@ -31,11 +31,11 @@ public class TextFileVehicleReader implements TaxiVehicleReader {
   }
 
   @Override
-  public Collection<TaxiVehicle> read() {
+  public List<TaxiVehicle> read() {
     try(BufferedReader reader = new BufferedReader(new FileReader(file))){
       String vehicleLine;
       StringToTaxiVehicleConverter converter = StringToTaxiVehicleConverter.INSTANCE;
-      HashSet<TaxiVehicle> collection = new HashSet<>();
+      List<TaxiVehicle> collection = new ArrayList<>();
       while ((vehicleLine = reader.readLine()) != null){
         try {
           collection.add(converter.convert(vehicleLine));

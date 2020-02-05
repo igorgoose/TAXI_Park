@@ -2,8 +2,10 @@ package epam.training.schepov.park.service.impl;
 
 import epam.training.schepov.park.exception.service.InvalidVehicleCapacityValueServiceException;
 import epam.training.schepov.park.exception.service.NullObjectServiceException;
+import epam.training.schepov.park.exception.validator.InvalidVehicleCapacityValueValidatorException;
+import epam.training.schepov.park.exception.validator.NullObjectTaxiVehicleValidatorException;
 import epam.training.schepov.park.repository.TaxiRepository;
-import epam.training.schepov.park.repository.impl.TaxiRepositoryHashSet;
+import epam.training.schepov.park.repository.impl.TaxiRepositoryArrayList;
 import epam.training.schepov.park.repository.specification.TaxiVehicleSpecification;
 import epam.training.schepov.park.repository.specification.impl.TaxiVehicleSpecificationAny;
 import epam.training.schepov.park.service.TaxiService;
@@ -11,8 +13,9 @@ import epam.training.schepov.park.validator.TaxiVehicleValidator;
 import epam.training.schepov.park.entity.TaxiVehicle;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Comparator;
-import java.util.List;
+
 
 public enum RepositoryTaxiService implements TaxiService {
 
@@ -21,7 +24,7 @@ public enum RepositoryTaxiService implements TaxiService {
     private TaxiRepository repository;
 
     RepositoryTaxiService(){
-        repository = new TaxiRepositoryHashSet();
+        repository = new TaxiRepositoryArrayList();
     }
 
 
@@ -31,18 +34,30 @@ public enum RepositoryTaxiService implements TaxiService {
 
     @Override
     public void addVehicle(TaxiVehicle taxiVehicle) throws InvalidVehicleCapacityValueServiceException, NullObjectServiceException {
-        TaxiVehicleValidator.validate(taxiVehicle);
+        try {
+            TaxiVehicleValidator.validate(taxiVehicle);
+        } catch (NullObjectTaxiVehicleValidatorException e) {
+            throw new NullObjectServiceException(e);
+        } catch (InvalidVehicleCapacityValueValidatorException e) {
+            throw new InvalidVehicleCapacityValueServiceException(e);
+        }
         repository.add(taxiVehicle);
     }
 
     @Override
     public void removeVehicle(TaxiVehicle taxiVehicle) throws InvalidVehicleCapacityValueServiceException, NullObjectServiceException {
-        TaxiVehicleValidator.validate(taxiVehicle);
+        try {
+            TaxiVehicleValidator.validate(taxiVehicle);
+        } catch (NullObjectTaxiVehicleValidatorException e) {
+            throw new NullObjectServiceException(e);
+        } catch (InvalidVehicleCapacityValueValidatorException e) {
+            throw new InvalidVehicleCapacityValueServiceException(e);
+        }
         repository.remove(taxiVehicle);
     }
 
     @Override
-    public List<TaxiVehicle> getVehicles(TaxiVehicleSpecification specification) throws NullObjectServiceException {
+    public Collection<TaxiVehicle> getVehicles(TaxiVehicleSpecification specification) throws NullObjectServiceException {
         if(specification == null){
             //todo log
             throw new NullObjectServiceException("Null specification passed!");
@@ -53,7 +68,7 @@ public enum RepositoryTaxiService implements TaxiService {
     @Override
     public BigDecimal getOverallValue() {
         BigDecimal overallValue = new BigDecimal(0);
-        List<TaxiVehicle> vehicleList = repository.get(new TaxiVehicleSpecificationAny());
+        Collection<TaxiVehicle> vehicleList = repository.get(new TaxiVehicleSpecificationAny());
         for (TaxiVehicle vehicle: vehicleList) {
             overallValue = overallValue.add(vehicle.getPrice());
         }
@@ -61,8 +76,10 @@ public enum RepositoryTaxiService implements TaxiService {
     }
 
     @Override
-    public List<TaxiVehicle> sort(Comparator<TaxiVehicle> comparator) {
-        return null;//todo
+    public void sort(Comparator<TaxiVehicle> comparator) {
+        if(comparator == null){
+
+        }
     }
 
 }

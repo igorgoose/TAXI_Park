@@ -6,13 +6,14 @@ import epam.training.schepov.park.repository.specification.TaxiVehicleSpecificat
 import epam.training.schepov.park.entity.TaxiVehicle;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 
 public interface TaxiService {
     void addVehicle(TaxiVehicle taxiVehicle) throws InvalidVehicleCapacityValueServiceException, NullObjectServiceException;
     void removeVehicle(TaxiVehicle taxiVehicle) throws InvalidVehicleCapacityValueServiceException, NullObjectServiceException;
-    List<TaxiVehicle> getVehicles(TaxiVehicleSpecification specification) throws NullObjectServiceException;
+    Collection<TaxiVehicle> getVehicles(TaxiVehicleSpecification specification) throws NullObjectServiceException;
     BigDecimal getOverallValue();
-    List<TaxiVehicle> sort(Comparator<TaxiVehicle> comparator);
+    void sort(Comparator<TaxiVehicle> comparator);
 }
