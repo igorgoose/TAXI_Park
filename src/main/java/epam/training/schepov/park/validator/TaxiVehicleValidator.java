@@ -3,13 +3,17 @@ package epam.training.schepov.park.validator;
 import epam.training.schepov.park.exception.service.InvalidVehicleCapacityValueServiceException;
 import epam.training.schepov.park.exception.service.NullObjectServiceException;
 import epam.training.schepov.park.entity.TaxiVehicle;
+import epam.training.schepov.park.exception.validator.InvalidVehicleCapacityValueValidatorException;
+import epam.training.schepov.park.exception.validator.NullObjectTaxiVehicleValidatorException;
 
 public class TaxiVehicleValidator {
 
-    public static void validate(TaxiVehicle taxiVehicle) throws NullObjectServiceException, InvalidVehicleCapacityValueServiceException {
+    public static void validate(TaxiVehicle taxiVehicle)
+        throws NullObjectTaxiVehicleValidatorException,
+        InvalidVehicleCapacityValueValidatorException {
         if(taxiVehicle == null){
             //todo log
-            throw new NullObjectServiceException("Null taxiVehicle passed!");
+            throw new NullObjectTaxiVehicleValidatorException("Null taxiVehicle passed!");
         }
         int passengerCapacity = taxiVehicle.getPassengerCapacity();
         int loadCapacity = taxiVehicle.getLoadCapacity();
@@ -18,7 +22,7 @@ public class TaxiVehicleValidator {
                 passengerCapacity > taxiVehicle.getMaxPassengerCapacity() ||
                 passengerCapacity < taxiVehicle.getMinPassengerCapacity()){
             //todo log
-            throw new InvalidVehicleCapacityValueServiceException("Invalid capacity value!");
+            throw new InvalidVehicleCapacityValueValidatorException("Invalid capacity value!");
         }
     }
 

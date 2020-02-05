@@ -3,6 +3,7 @@ package epam.training.schepov.park.entity;
 import epam.training.schepov.park.entity.brand.TaxiBrand;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public abstract class TaxiVehicle {
     private static int current_id = 1;
@@ -16,6 +17,22 @@ public abstract class TaxiVehicle {
     protected TaxiVehicle() {
         id = current_id++;
         brand = DEFAULT_BRAND;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public void setPassengerCapacity(int passengerCapacity) {
+        this.passengerCapacity = passengerCapacity;
+    }
+
+    public void setLoadCapacity(int loadCapacity) {
+        this.loadCapacity = loadCapacity;
+    }
+
+    public void setBrand(TaxiBrand brand) {
+        this.brand = brand;
     }
 
     protected TaxiVehicle(BigDecimal price, int loadCapacity, int passengerCapacity, TaxiBrand brand){
@@ -51,4 +68,25 @@ public abstract class TaxiVehicle {
     public abstract int getMinPassengerCapacity();
     public abstract int getMaxPassengerCapacity();
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        TaxiVehicle that = (TaxiVehicle) o;
+        return id == that.id &&
+            passengerCapacity == that.passengerCapacity &&
+            loadCapacity == that.loadCapacity &&
+            Objects.equals(price, that.price) &&
+            brand == that.brand &&
+            DEFAULT_BRAND == that.DEFAULT_BRAND;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, price, passengerCapacity, loadCapacity, brand, DEFAULT_BRAND);
+    }
 }
