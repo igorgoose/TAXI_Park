@@ -5,6 +5,7 @@ import epam.training.schepov.park.entity.auto.LuxuryClass;
 import epam.training.schepov.park.entity.brand.TaxiBrand;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class TaxiMinibus extends TaxiVehicle {
     private static final int MIN_LOAD_CAPACITY = 0;
@@ -60,4 +61,17 @@ public class TaxiMinibus extends TaxiVehicle {
         return rideRegion;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        TaxiMinibus that = (TaxiMinibus) o;
+        return rideRegion == that.rideRegion;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), rideRegion);
+    }
 }

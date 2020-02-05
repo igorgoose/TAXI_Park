@@ -2,10 +2,12 @@ package epam.training.schepov.park.entity;
 
 import epam.training.schepov.park.entity.brand.TaxiBrand;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Comparator;
 import java.util.Objects;
 
-public abstract class TaxiVehicle {
+public abstract class TaxiVehicle implements Serializable, Comparable<TaxiVehicle> {
     private static int current_id = 1;
     protected final int id;
     protected BigDecimal price;
@@ -88,5 +90,21 @@ public abstract class TaxiVehicle {
     @Override
     public int hashCode() {
         return Objects.hash(id, price, passengerCapacity, loadCapacity, brand, DEFAULT_BRAND);
+    }
+
+    @Override
+    public String toString() {
+        return "TaxiVehicle{" +
+                "id=" + id +
+                ", price=" + price +
+                ", passengerCapacity=" + passengerCapacity +
+                ", loadCapacity=" + loadCapacity +
+                ", brand=" + brand +
+                '}';
+    }
+
+    @Override
+    public int compareTo(TaxiVehicle o) {
+        return id - o.id;
     }
 }

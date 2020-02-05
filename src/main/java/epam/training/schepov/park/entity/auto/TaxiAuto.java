@@ -4,6 +4,7 @@ import epam.training.schepov.park.entity.TaxiVehicle;
 import epam.training.schepov.park.entity.brand.TaxiBrand;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class TaxiAuto extends TaxiVehicle {
 
@@ -59,5 +60,31 @@ public class TaxiAuto extends TaxiVehicle {
 
     public void setLuxuryClass(LuxuryClass luxuryClass) {
         this.luxuryClass = luxuryClass;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        TaxiAuto taxiAuto = (TaxiAuto) o;
+        return luxuryClass == taxiAuto.luxuryClass;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), luxuryClass);
+    }
+
+    @Override
+    public String toString() {
+        return "TaxiAuto{" +
+                "luxuryClass=" + luxuryClass +
+                ", id=" + id +
+                ", price=" + price +
+                ", passengerCapacity=" + passengerCapacity +
+                ", loadCapacity=" + loadCapacity +
+                ", brand=" + brand +
+                '}';
     }
 }

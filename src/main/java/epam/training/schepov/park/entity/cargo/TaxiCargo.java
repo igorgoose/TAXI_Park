@@ -4,6 +4,7 @@ import epam.training.schepov.park.entity.TaxiVehicle;
 import epam.training.schepov.park.entity.brand.TaxiBrand;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class TaxiCargo extends TaxiVehicle {
     private static final int MIN_LOAD_CAPACITY = 400;
@@ -58,4 +59,31 @@ public class TaxiCargo extends TaxiVehicle {
     public void setBodyType(BodyType bodyType) {
         this.bodyType = bodyType;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        TaxiCargo taxiCargo = (TaxiCargo) o;
+        return bodyType == taxiCargo.bodyType;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), bodyType);
+    }
+
+    @Override
+    public String toString() {
+        return "TaxiCargo{" +
+                "bodyType=" + bodyType +
+                ", id=" + id +
+                ", price=" + price +
+                ", passengerCapacity=" + passengerCapacity +
+                ", loadCapacity=" + loadCapacity +
+                ", brand=" + brand +
+                '}';
+    }
+
 }
