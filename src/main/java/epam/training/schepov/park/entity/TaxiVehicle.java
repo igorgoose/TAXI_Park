@@ -1,6 +1,7 @@
 package epam.training.schepov.park.entity;
 
 import epam.training.schepov.park.entity.brand.TaxiBrand;
+import epam.training.schepov.park.exception.entity.TaxiVehicleUnsupportedOperationException;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -107,4 +108,5 @@ public abstract class TaxiVehicle implements Serializable, Comparable<TaxiVehicl
     public int compareTo(TaxiVehicle o) {
         return id - o.id;
     }
+
 }

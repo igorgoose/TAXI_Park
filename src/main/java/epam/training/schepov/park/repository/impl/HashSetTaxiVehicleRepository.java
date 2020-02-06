@@ -57,24 +57,7 @@ public enum HashSetTaxiVehicleRepository implements TaxiRepository {
             LOGGER.info("query : Null comparator passed");
             throw new RepositoryException("Null specification passed!");
         }
-//        TreeSet<TaxiVehicle> specifiedList = new TreeSet<>();
-//        for (TaxiVehicle taxiVehicle : repository) {
-//            if (specification.query(taxiVehicle)) {
-//                specifiedList.add(taxiVehicle);
-//            }
-//        }
-
         return specification.query();
     }
-
-
-//    @Override
-//    public void sort(Comparator<TaxiVehicle> comparator) {
-//        if (comparator == null) {
-//            LOGGER.info("sort : Null comparator passed");
-//            throw new RepositoryException("Null comparator passed!");
-//        }
-//        repository.sort(comparator);
-//    }
 
 }

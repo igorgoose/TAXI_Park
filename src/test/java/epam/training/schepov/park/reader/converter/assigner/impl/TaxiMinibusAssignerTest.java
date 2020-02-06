@@ -1,8 +1,6 @@
 package epam.training.schepov.park.reader.converter.assigner.impl;
 
 import epam.training.schepov.park.entity.auto.TaxiAuto;
-import epam.training.schepov.park.entity.cargo.BodyType;
-import epam.training.schepov.park.entity.cargo.TaxiCargo;
 import epam.training.schepov.park.entity.minibus.RideRegion;
 import epam.training.schepov.park.entity.minibus.TaxiMinibus;
 import epam.training.schepov.park.exception.converter.ConverterException;

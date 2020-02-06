@@ -8,6 +8,6 @@ public class TaxiVehicleComparatorByID implements Comparator<TaxiVehicle> {
 
     @Override
     public int compare(TaxiVehicle o1, TaxiVehicle o2) {
-        return o1.compareTo(o2);
+        return Comparator.comparingInt(TaxiVehicle::getId).compare(o1, o2);
     }
 }
