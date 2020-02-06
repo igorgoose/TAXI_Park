@@ -41,7 +41,6 @@ public enum RepositoryTaxiService implements TaxiService {
         this.repository = repository;
     }
 
-    //todo add update()
 
     @Override
     public void addVehicle(TaxiVehicle taxiVehicle)
